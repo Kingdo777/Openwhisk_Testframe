@@ -73,7 +73,8 @@ def send_request(fp, task_num, sync, rId):
                     tm_st + "#" +
                     tm_end + "#" +
                     tm_invoke + "#" +
-                    str(respond))
+                    str(respond)
+                    + "\n")
 
     list_task = []
     for i in range(task_num):
