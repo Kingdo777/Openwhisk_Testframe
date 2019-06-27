@@ -91,8 +91,8 @@ def send_request(fp, task_num, sync, rId):
 
 
 def wsk(cmd):
-    print("wsk" + " " + cmd)
     result = os.popen("wsk " + cmd).read()
+    print("wsk" + " " + cmd)
     print(result)
     return result.strip("\n")
 
@@ -151,6 +151,7 @@ class FuncOp:
             tm_st = time.time() * 1000
             resp = wsk("action invoke " + self.action_name + " -bi ")
             tm_end = time.time() * 1000
+            print(resp)
             resp = resp[69:]
             resp = json.loads(resp)
             try:
