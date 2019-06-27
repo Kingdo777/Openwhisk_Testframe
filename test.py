@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 # 字体颜色
 # 背景颜色
-print("=====背景颜色======")
-for i in range(41, 48):
-    print("\033[32;m"+"Hello world!"+"\033[0m")
+import sys
 
-print(234)
+argv = sys.argv
+
+call_count = argv[2]
+
+print(len(argv))
+# call_count2 = argv[3]
+
