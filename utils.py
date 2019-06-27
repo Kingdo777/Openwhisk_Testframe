@@ -3,6 +3,8 @@ import decimal
 import json
 import os
 import time
+from multiprocessing import Process
+from multiprocessing.pool import Pool
 from threading import Thread
 from zipfile import ZipFile
 
@@ -78,7 +80,7 @@ def send_request(fp, task_num, sync, rId):
 
     list_task = []
     for i in range(task_num):
-        t = Thread(target=invoke_func, args=(rId, i))
+        t = Process(target=invoke_func, args=(rId, i))
         t.start()
         if sync:
             list_task.append(t)
@@ -122,7 +124,7 @@ class FuncOp:
     def delete_function(self):
         try:
             wsk(" action delete " + self.action_name + " -i")
-            print("successfully delete function：" + self.action_name)
+            # print("successfully delete function：" + self.action_name)
             return True
         except Exception as e:
             print("wrongly delete function：" + self.action_name)
@@ -158,7 +160,7 @@ class FuncOp:
             if not resp:
                 resp = "ERROR"
             out = "{}#{}".format(self.dump_meta(), resp)
-            print("successfully invoke function：" + self.action_name)
+            # print("successfully invoke function：" + self.action_name)
             return tm_st, tm_end, out
         except Exception as e:
             print("wrongly invoke function：" + self.action_name)
