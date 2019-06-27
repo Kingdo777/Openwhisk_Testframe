@@ -94,15 +94,15 @@ def wsk(cmd):
 
 
 def create_trigger(trigger_name):
-    wsk("trigger create " + trigger_name)
+    wsk("-i trigger create " + trigger_name)
 
 
 def fire_trigger(trigger_name):
-    wsk("trigger fire " + trigger_name)
+    wsk("-i trigger fire " + trigger_name)
 
 
 def delete_trigger(trigger_name):
-    wsk("trigger delete " + trigger_name)
+    wsk("-i trigger delete " + trigger_name)
 
 
 class FuncOp:
@@ -164,8 +164,8 @@ class FuncOp:
             return False
 
     def create_rule(self, rule_name, trigger_name):
-        wsk("rule create " + rule_name + " " + trigger_name + " " + self.action_name)
+        wsk("-i rule create " + rule_name + " " + trigger_name + " " + self.action_name)
 
     @staticmethod
     def delete_rule(rule_name):
-        wsk("rule delete " + rule_name)
+        wsk("-i rule delete " + rule_name)
