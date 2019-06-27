@@ -92,7 +92,7 @@ def send_request(fp, task_num, sync, rId):
 
 def wsk(cmd):
     result = os.popen("wsk " + cmd).read()
-    print("wsk" + " " + cmd)
+    print("\033[32;m"+"wsk" + " " + cmd+"\033[0m")
     print(result)
     return result.strip("\n")
 
