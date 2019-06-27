@@ -132,8 +132,10 @@ class FuncOp:
     def invoke_function(self):
         try:
             tm_st = time.time() * 1000
-            resp = wsk("action invoke " + self.action_name + " -i ")
+            resp = wsk("action invoke " + self.action_name + " -bi ")
             tm_end = time.time() * 1000
+            resp = resp[68:]
+            print(json.loads(resp[68:])['start'])
             print(resp)
             # resp = json.loads(resp)
             # try:
@@ -143,7 +145,7 @@ class FuncOp:
             # if not resp:
             #     resp = "ERROR"
             # out = "{}#{}\n".format(self.dump_meta(), resp)
-            out=123
+            out = 123
             print("successfully invoke function：" + self.action_name)
             return tm_st, tm_end, out
         except Exception as e:
