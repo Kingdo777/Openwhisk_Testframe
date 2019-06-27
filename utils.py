@@ -47,7 +47,7 @@ def make_zip_file(zip_filename):
     return os.path.join(os.getcwd(), zip_filename)
 
 
-def send_request(fp, task_num, sync, rId, para={}):
+def send_request(fp, task_num, sync, rId):
     """
     发起调用请求
     :param
@@ -88,6 +88,7 @@ def send_request(fp, task_num, sync, rId, para={}):
 
 
 def wsk(cmd):
+    print(cmd)
     return os.popen("wsk " + cmd).read().strip("\n")
 
 
@@ -120,7 +121,7 @@ class FuncOp:
         :return:
         """
         try:
-            wsk("action create " + self.action_name + " --kind python:3  -c 100 -m 128 -i" + src_file)
+            wsk("action create " + self.action_name + " --kind python:3  -m 128 -i " + src_file)
             print("successfully create function：" + self.action_name)
             return True
         except Exception as e:
@@ -131,15 +132,16 @@ class FuncOp:
     def invoke_function(self):
         try:
             tm_st = time.time() * 1000
-            resp = wsk("action invoke " + self.action_name + " -b -i")
+            resp = wsk("action invoke " + self.action_name + " -r -i ")
             tm_end = time.time() * 1000
+            resp = json.loads(resp)
             try:
-                resp = json.loads(resp['Payload'].read())
+                resp = "{}#{}#{}".format(resp["start"], resp["end"], resp["duration"])
             except Exception as e:
                 print(str(e), resp)
             if not resp:
                 resp = "ERROR"
-            out = "{}#{}".format(self.dump_meta(), resp)
+            out = "{}#{}\n".format(self.dump_meta(), resp)
             print("successfully invoke function：" + self.action_name)
             return tm_st, tm_end, out
         except Exception as e:
