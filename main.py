@@ -14,11 +14,11 @@ zipped_code_path = make_zip_file('tmp.zip')
 
 argv = sys.argv
 argv_count = len(argv)
-if argv_count < 1:
+if argv_count < 2:
     call_mode = "same"
     call_count = 10
 else:
-    if argv_count < 2:
+    if argv_count < 3:
         call_mode = argv[1]
         call_count = 10
     else:
