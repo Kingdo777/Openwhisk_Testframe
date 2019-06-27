@@ -151,8 +151,8 @@ class FuncOp:
             tm_st = time.time() * 1000
             resp = wsk("action invoke " + self.action_name + " -bi ")
             tm_end = time.time() * 1000
-            print(resp)
-            resp = resp[69:]
+            len_duoyu = len("ok: invoked /_/" + self.action_name + " with id 04785c6c7b534feeb85c6c7b536fee00")
+            resp = resp[len_duoyu:]
             resp = json.loads(resp)
             try:
                 resp = "{}#{}#{}".format(resp["start"], resp["end"], resp["duration"])
