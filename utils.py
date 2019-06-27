@@ -89,8 +89,10 @@ def send_request(fp, task_num, sync, rId):
 
 
 def wsk(cmd):
-    print(cmd)
-    return os.popen("wsk " + cmd).read().strip("\n")
+    print("wsk" + " " + cmd)
+    result = os.popen("wsk " + cmd).read()
+    print(result)
+    return result.strip("\n")
 
 
 def create_trigger(trigger_name):
@@ -135,7 +137,7 @@ class FuncOp:
         """
         try:
             wsk("action create " + self.action_name + " --kind python:3  -m 128 -i " + src_file)
-            print("successfully create function：" + self.action_name)
+            # print("successfully create function：" + self.action_name)
             return True
         except Exception as e:
             print("wrongly create function：" + self.action_name)

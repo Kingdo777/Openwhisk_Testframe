@@ -28,7 +28,7 @@ for rId in range(10):
     fp = FuncOp(func_name)
     fp.create_function(zipped_code_path)
     fp.create_rule(rule_name, "trigger_test")
-
+fire_trigger("trigger_test")
 for rId in range(10):
     func_name = "action" + str(rId)
     rule_name = "rule" + str(rId)
