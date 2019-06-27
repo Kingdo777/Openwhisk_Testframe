@@ -93,6 +93,18 @@ def wsk(cmd):
     return os.popen("wsk " + cmd).read().strip("\n")
 
 
+def create_trigger(trigger_name):
+    wsk("trigger create " + trigger_name)
+
+
+def fire_trigger(trigger_name):
+    wsk("trigger fire " + trigger_name)
+
+
+def delete_trigger(trigger_name):
+    wsk("trigger delete " + trigger_name)
+
+
 class FuncOp:
     def __init__(self,
                  action_name):
@@ -150,3 +162,10 @@ class FuncOp:
             print("wrongly invoke function：" + self.action_name)
             print(e)
             return False
+
+    def create_rule(self, rule_name, trigger_name):
+        wsk("rule create " + rule_name + " " + trigger_name + " " + self.action_name)
+
+    @staticmethod
+    def delete_rule(rule_name):
+        wsk("rule delete " + rule_name)
