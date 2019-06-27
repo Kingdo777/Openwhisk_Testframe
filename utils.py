@@ -143,7 +143,7 @@ class FuncOp:
                 print(str(e), resp)
             if not resp:
                 resp = "ERROR"
-            out = "{}#{}\n".format(self.dump_meta(), resp)
+            out = "{}#{}".format(self.dump_meta(), resp)
             print("successfully invoke function：" + self.action_name)
             return tm_st, tm_end, out
         except Exception as e:

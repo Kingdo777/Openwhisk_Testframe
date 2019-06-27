@@ -2,7 +2,7 @@ import time
 
 
 def main(dict):
-    time.sleep(10)
+    time.sleep(30)
     if 'name' in dict:
         name = dict['name']
     else:
