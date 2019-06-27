@@ -134,18 +134,15 @@ class FuncOp:
             tm_st = time.time() * 1000
             resp = wsk("action invoke " + self.action_name + " -bi ")
             tm_end = time.time() * 1000
-            resp = resp[68:]
-            print(json.loads(resp[68:])['start'])
-            print(resp)
-            # resp = json.loads(resp)
-            # try:
-            #     resp = "{}#{}#{}".format(resp["start"], resp["end"], resp["duration"])
-            # except Exception as e:
-            #     print(str(e), resp)
-            # if not resp:
-            #     resp = "ERROR"
-            # out = "{}#{}\n".format(self.dump_meta(), resp)
-            out = 123
+            resp = resp[69:]
+            resp = json.loads(resp)
+            try:
+                resp = "{}#{}#{}".format(resp["start"], resp["end"], resp["duration"])
+            except Exception as e:
+                print(str(e), resp)
+            if not resp:
+                resp = "ERROR"
+            out = "{}#{}\n".format(self.dump_meta(), resp)
             print("successfully invoke function：" + self.action_name)
             return tm_st, tm_end, out
         except Exception as e:
