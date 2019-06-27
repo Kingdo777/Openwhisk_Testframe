@@ -11,8 +11,8 @@ from utils import *
 # 准备工作
 zipped_code_path = make_zip_file('tmp.zip')
 
-for rId in range(10):
-    func_name = "test" + str(int(time.time() * 1000))[-8:]
+for rId in range(1):
+    func_name = "action" + str(int(time.time() * 1000))[-8:]
     fp = FuncOp(func_name)
     # 创建函数
     fp.create_function(zipped_code_path)
