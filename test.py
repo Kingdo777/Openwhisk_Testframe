@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# 字体颜色
-# 背景颜色
 import sys
 
 argv = sys.argv
+argv_count = len(argv)
+if argv_count < 2:
+    call_mode = "same"
+    call_count = 10
+else:
+    if argv_count < 3:
+        call_mode = argv[1]
+        call_count = 10
+    else:
+        call_mode = argv[1]
+        call_count = argv[2]
 
-call_count = argv[2]
-
-print(len(argv))
-# call_count2 = argv[3]
-
+print(call_count,call_mode)
