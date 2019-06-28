@@ -24,6 +24,7 @@ else:
     else:
         call_mode = argv[1]
         call_count = argv[2]
+print(call_count, call_mode)
 
 if call_mode == "same":
     for rId in range(1):
