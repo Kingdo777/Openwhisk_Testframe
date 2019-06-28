@@ -23,8 +23,7 @@ else:
         call_count = 10
     else:
         call_mode = argv[1]
-        call_count = argv[2]
-print(call_count, call_mode)
+        call_count = int(argv[2])
 
 if call_mode == "same":
     for rId in range(1):
